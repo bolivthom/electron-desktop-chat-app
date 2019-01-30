@@ -9,6 +9,8 @@ let mainWindow
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 800, height: 600 })
+  
+  browserWindow.setMenu(null);
 
   const startUrl =
     process.env.ELECTRON_START_URL ||
@@ -18,13 +20,16 @@ function createWindow() {
       slashes: true
     })
   mainWindow.loadURL(startUrl)
+  
 
   mainWindow.on('closed', function() {
     mainWindow = null
   })
 }
 
-app.on('ready', createWindow)
+
+app.on('ready', createWindow) 
+
 
 app.on('window-all-closed', function() {
   if (process.platform !== 'darwin') {
